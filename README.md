@@ -5,26 +5,26 @@ This is shamelessly ripped from
 
 ## Installation
 
-To install the systemd unit, run `make install` in the source
+To install the systemd unit, run `sudo make install` in the source
 directory, which will place the support scripts into `/usr/bin` and the
 systemd unit into `/etc/systemd/system`.
 
 ## Service `usbipd`
 
 ```shell
-systemctl daemon-reload
+sudo systemctl daemon-reload
 ```
 
 To enable the usbipd at boot, run:
 
 ```shell
-systemctl enable usbipd
+sudo systemctl enable usbipd
 ```
 
 To start immediately:
 
 ```shell
-systemctl start usbipd
+sudo systemctl start usbipd
 ```
 
 ## Configuration
@@ -46,17 +46,17 @@ USB_IDPRODUCT=012d
 To enable the device at boot, run:
 
 ```shell
-systemctl enable usbip-device@wifi
+sudo systemctl enable usbip-device@wifi
 ```
 
 To share the device immediately:
 
 ```shell
-systemctl start usbip-device@wifi
+sudo systemctl start usbip-device@wifi
 ```
 
 To stop sharing it:
 
 ```shell
-systemctl stop usbip-device@wifi
+sudo systemctl stop usbip-device@wifi
 ```
