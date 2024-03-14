@@ -1,36 +1,62 @@
 # Systemd unit for automounting usb devices over usbip
 
-This is shamelessly ripped from [larsks sysetemd-usb-gadget][https://github.com/larsks/systemd-usb-gadget]
+This is shamelessly ripped from 
+[furbrain systemd-usbip](https://github.com/furbrain/systemd-usbip)
 
 ## Installation
 
 To install the systemd unit, run `make install` in the source
-directory, which will place the support scripts into `/sbin` and the
+directory, which will place the support scripts into `/usr/bin` and the
 systemd unit into `/etc/systemd/system`.
+
+## Service `usbipd`
+
+```shell
+systemctl daemon-reload
+```
+
+To enable the usbipd at boot, run:
+
+```shell
+systemctl enable usbipd
+```
+
+To start immediately:
+
+```shell
+systemctl start usbipd
+```
 
 ## Configuration
 
 Create one or files in `/etc/usbip-devices` named `<device_name>.conf`.
 These files **must** contain the following configuration keys:
 
+- `USB_IDVENDOR` -- Vendor ID.
+- `USB_IDPRODUCT` -- Product ID.
 
-- `USB_IDVENDOR` -- Vendor ID. 
-- `USB_IDPRODUCT` -- Product ID. 
+For example, to share a device with vendor:product 2357:012d, create a file
+called `/etc/usbip-devices/wifi.conf`
 
-For example, to share a device with vendor:product 03f0:8607, create a file
-called /etc/usbip_devices/mouse.conf
-
-    USB_IDVENDOR=03f0
-    USB_IDPRODUCT=8607
+```
+USB_IDVENDOR=2357
+USB_IDPRODUCT=012d
+```
 
 To enable the device at boot, run:
 
-    systemctl enable usbip-device@mouse
+```shell
+systemctl enable usbip-device@wifi
+```
 
 To share the device immediately:
 
-    systemctl start usbip-device@mouse
+```shell
+systemctl start usbip-device@wifi
+```
 
 To stop sharing it:
 
-    systemctl stop usbip-device@mouse
+```shell
+systemctl stop usbip-device@wifi
+```

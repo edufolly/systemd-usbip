@@ -1,4 +1,4 @@
-sbindir=/usr/sbin
+bindir=/usr/bin
 sysconfdir=/etc
 unitdir=$(sysconfdir)/systemd/system
 
@@ -13,16 +13,16 @@ SCRIPTS = \
 all:
 
 install: install-scripts install-units
-	mkdir -p $(DESTDIR)$(sysconfdir)/usbip-devices
+	mkdir -p $(sysconfdir)/usbip-devices
 
 install-scripts: $(SCRIPTS)
-	mkdir -p $(DESTDIR)$(sbindir)
+	mkdir -p $(bindir)
 	for s in $(SCRIPTS); do \
-		install -m 755 $$s $(DESTDIR)$(sbindir)/$${s%.sh}; \
+		install -m 755 $$s $(bindir)/$${s%.sh}; \
 	done
 
 install-units: $(UNITS)
-	mkdir -p $(DESTDIR)$(unitdir)
+	mkdir -p $(unitdir)
 	for u in $(UNITS); do \
-		install -m 600 $$u $(DESTDIR)$(unitdir); \
+		install -m 600 $$u $(unitdir); \
 	done
