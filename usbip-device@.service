@@ -6,8 +6,8 @@ After=usbipd.service
 [Service]
 EnvironmentFile=/etc/usbip-devices/%i.conf
 RemainAfterExit=yes
-ExecStart=/usr/sbin/configure-usbip-device %i
-ExecStop=/usr/sbin/remove-usbip-device %i
+ExecStart=/usr/bin/configure-usbip-device %i
+ExecStop=/usr/bin/remove-usbip-device %i
 
 [Install]
 WantedBy=multi-user.target
