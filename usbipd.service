@@ -4,9 +4,8 @@ After=network.target
 
 [Service]
 Type=forking
-ExecStartPre=/bin/modprobe usbip-host
+ExecStartPre=/sbin/modprobe usbip-host
 ExecStart=/usr/bin/usbipd -D
 
 [Install]
 WantedBy=multi-user.target
-
